@@ -19,8 +19,8 @@ public class RegistrationService
 
         var registrations = JsonSerializer.Deserialize<List<Registration>>(json) ?? new List<Registration>();
         registrations.Add(registration);
-
         using var content = new StringContent(JsonSerializer.Serialize(registrations), Encoding.UTF8, "application/json");
+        Console.WriteLine($"RegistrationService: {JsonSerializer.Serialize(registrations)}");
         await httpClient.PutAsync(filePath, content);
     }
 }
