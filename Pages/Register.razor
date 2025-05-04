@@ -1,0 +1,36 @@
+@page "/register/{eventId:int}"
+@inject RegistrationService RegistrationService
+@inject NavigationManager NavigationManager
+
+<h1>Register for Event</h1>
+
+<EditForm Model="registration" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label>Name:</label>
+        <InputText @bind-Value="registration.UserName" />
+        <ValidationMessage For="@(() => registration.UserName)" />
+    </div>
+    <div>
+        <label>Email:</label>
+        <InputText @bind-Value="registration.UserEmail" />
+        <ValidationMessage For="@(() => registration.UserEmail)" />
+    </div>
+    <button type="submit">Register</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int eventId { get; set; }
+
+    private Registration registration = new Registration();
+
+    private async Task HandleSubmit()
+    {
+        registration.EventId = eventId;
+        await RegistrationService.RegisterAsync(registration);
+        NavigationManager.NavigateTo("/");
+    }
+}

@@ -1,0 +1,29 @@
+@page "/details/{id:int}"
+@inject EventService EventService
+
+<h1>@eventDetails?.Name</h1>
+
+@if (eventDetails == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <p>Date: @eventDetails.Date.ToShortDateString()</p>
+    <p>Location: @eventDetails.Location</p>
+    <p>@eventDetails.Description</p>
+
+    <a href="/register/@eventDetails.Id">Register for this Event</a>
+}
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+
+    private Event eventDetails;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        eventDetails = await EventService.GetEventByIdAsync(id);
+    }
+}

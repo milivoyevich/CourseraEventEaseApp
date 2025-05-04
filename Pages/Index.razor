@@ -1,0 +1,35 @@
+@page "/"
+@inject EventService EventService
+@using CourseraEventEaseApp.Components
+
+<h1>Upcoming Events</h1>
+
+@if (events == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    @* <ul>
+        @foreach (var eventItem in events)
+        {
+            <li>
+                <a href="/details/@eventItem.Id">@eventItem.Name</a> - 
+                @eventItem.Date.ToShortDateString() (@eventItem.Location)
+            </li>
+        }
+    </ul> *@
+    @foreach (var eventItem in events)
+    {
+        <EventCard Event="eventItem" />
+    }
+}
+
+@code {
+    private List<Event> events;
+
+    protected override async Task OnInitializedAsync()
+    {
+        events = await EventService.GetEventsAsync();
+    }
+}

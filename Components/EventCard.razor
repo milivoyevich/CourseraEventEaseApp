@@ -1,0 +1,27 @@
+@code {
+    [Parameter]
+    public Event Event { get; set; }
+}
+
+<div class="event-card">
+    <h2>@Event.Name</h2>
+    <p>Date: @Event.Date.ToShortDateString()</p>
+    <p>Location: @Event.Location</p>
+    <a href="/details/@Event.Id">View Details</a>
+</div>
+
+<style>
+    .event-card {
+        border: 1px solid #ccc;
+        padding: 16px;
+        margin: 16px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .event-card h2 {
+        margin: 0 0 8px;
+    }
+    .event-card p {
+        margin: 4px 0;
+    }
+</style>

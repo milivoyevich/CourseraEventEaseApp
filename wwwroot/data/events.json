@@ -1,0 +1,16 @@
+[
+    {
+      "id": 1,
+      "name": "Corporate Gala Night",
+      "date": "2025-05-20",
+      "location": "New York",
+      "description": "An evening of networking and entertainment."
+    },
+    {
+      "id": 2,
+      "name": "Tech Expo 2025",
+      "date": "2025-06-10",
+      "location": "San Francisco",
+      "description": "Showcasing the latest in technology and innovation."
+    }
+  ]
